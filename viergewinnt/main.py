@@ -29,7 +29,7 @@ if __name__ == '__main__':
         turn = random.randint(0, 1)
         game_over = False
 
-        while not game_over:
+        while not game_over and not board.is_full():
             if turn == 0:
                 print('Player 1 it is your move')
                 board.place_piece(p1.move(board), p1.piece)
@@ -59,7 +59,7 @@ if __name__ == '__main__':
         turn = random.randint(0, 1)
         game_over = False
 
-        while not game_over:
+        while not game_over and not board.is_full():
             if turn == 0:
                 print('Player 1 it is your move')
                 board.place_piece(p1.move(board), p1.piece)
@@ -90,7 +90,7 @@ if __name__ == '__main__':
         turn = random.randint(0, 1)
         game_over = False
 
-        while not game_over:
+        while not game_over and not board.is_full():
             if turn == 0:
                 print('Player 1 it is your move')
                 board.place_piece(p1.move(board), p1.piece)
@@ -113,3 +113,6 @@ if __name__ == '__main__':
 
     else:
         print("Invalid choice, please try again.")
+
+    if board.is_full():
+        print("It's a tie!")

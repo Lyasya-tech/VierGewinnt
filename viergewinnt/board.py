@@ -33,32 +33,41 @@ class Board:
     def is_piece(self, row: int, column: int, piece: str):
         return self.slots[row][column] == piece
 
+    def is_full(self):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                if self.slots[row][column] == " ":
+                    return False
+        return True
+
     def win(self, piece: str):
         for column in range(self.columns - 3):
             for row in range(self.rows):
-                if self.slots[row][column] == self.slots[row][column+1] == self.slots[row][column+2] == self.slots[row][column+3] == piece:
-                    print('horizontal win')
+                if self.slots[row][column] == self.slots[row][column+1] == self.slots[row][column+2] ==\
+                        self.slots[row][column+3] == piece:
+                    # print('horizontal win')
                     return True
 
         for column in range(self.columns):
             for row in range(self.rows - 3):
-                if self.slots[row][column] == self.slots[row+1][column] == self.slots[row+2][column] == self.slots[row+3][column] == piece:
-                    print('vertical win')
+                if self.slots[row][column] == self.slots[row+1][column] == self.slots[row+2][column] ==\
+                        self.slots[row+3][column] == piece:
+                    # print('vertical win')
                     return True
 
         for column in range(self.columns - 3):
             for row in range(3, self.rows):
-                if self.slots[row][column] == self.slots[row-1][column+1] == self.slots[row-2][column+2] == self.slots[row-3][column+3] == piece:
-                    print('positive diagonal win')
+                if self.slots[row][column] == self.slots[row-1][column+1] == self.slots[row-2][column+2] ==\
+                        self.slots[row-3][column+3] == piece:
+                    # print('positive diagonal win')
                     return True
 
         for column in range(self.columns - 3):
             for row in range(self.rows - 3):
-                if self.slots[row][column] == self.slots[row+1][column+1] == self.slots[row+2][column+2] == self.slots[row+3][column+3] == piece:
-                    print('negative diagonal win')
+                if self.slots[row][column] == self.slots[row+1][column+1] == self.slots[row+2][column+2] ==\
+                        self.slots[row+3][column+3] == piece:
+                    # print('negative diagonal win')
                     return True
-
-
 
     def score(self, piece: str):
         score = 0
@@ -101,26 +110,64 @@ class Board:
         return score
 
 
-
 if __name__ == '__main__':
     board = Board(6, 7)
-    #print(board)
-    #board.print_board()
+    # print(board)
+    # board.print_board()
+    board.place_piece(0, "X")
+    # board.place_piece(0, "X")
+    # board.place_piece(0, "X")
+    # board.place_piece(0, "X")
+    # board.place_piece(0, "X")
+    # board.place_piece(0, "X")
+
     board.place_piece(1, "X")
-    #board.print_board()
-    #board.score("X")
-    board.place_piece(2, "X")
-    board.place_piece(2, "X")
-    board.place_piece(3, "X")
-    board.place_piece(3, "X")
-    board.place_piece(3, "X")
-    board.place_piece(4, "O")
-    board.place_piece(4, "X")
-    board.place_piece(4, "X")
-    board.place_piece(4, "X")
+    board.place_piece(1, "X")
+    # board.place_piece(1, "X")
+    # board.place_piece(1, "X")
+    # board.place_piece(1, "X")
+    # board.place_piece(1, "X")
 
-    print(board.win("X"))
+    board.place_piece(2, "X")
+    board.place_piece(2, "X")
+    board.place_piece(2, "X")
+    # board.place_piece(2, "X")
+    # board.place_piece(2, "X")
+    # board.place_piece(2, "X")
+
+    board.place_piece(3, "X")
+    board.place_piece(3, "X")
+    board.place_piece(3, "X")
+    board.place_piece(3, "X")
+    # board.place_piece(3, "X")
+    # board.place_piece(3, "X")
+
+    board.place_piece(4, "X")
+    board.place_piece(4, "X")
+    board.place_piece(4, "X")
+    # board.place_piece(4, "X")
+    # board.place_piece(4, "X")
+    # board.place_piece(4, "X")
+
+    board.place_piece(5, "X")
+    board.place_piece(5, "X")
+    # board.place_piece(5, "X")
+    # board.place_piece(5, "X")
+    # board.place_piece(5, "X")
+    # board.place_piece(5, "X")
+
+    board.place_piece(6, "X")
+    # board.place_piece(6, "X")
+    # board.place_piece(6, "X")
+    # board.place_piece(6, "X")
+    # board.place_piece(6, "X")
+    # board.place_piece(6, "X")
+
+    # print(board.win("X"))
     print(board)
-    #board.score("X")
-    #print(board.valid_column(1))
+    print(board.score("X"))
+    # print(board.valid_column(1))
 
+    # print(board.get_free_row(1))
+    # print(board.is_full())
+    # print(board.slots)
