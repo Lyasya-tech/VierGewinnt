@@ -105,7 +105,34 @@ class Board:
                     score += 2
 
         # positive diagonal score
+        for column in range(self.columns - 3):
+            for row in range(3, self.rows):
 
+                score_check = [self.slots[row - i][column + i] for i in range(4)]
+                # print(score_check)
+                if score_check.count(piece) == 4:
+                    score += 100
+                elif score_check.count(piece) == 3 and score_check.count(' ') == 1:
+                    score += 10
+                elif score_check.count(piece) == 2 and score_check.count(' ') == 2:
+                    score += 5
+                elif score_check.count(piece) == 1 and score_check.count(' ') == 3:
+                    score += 2
+
+        # negative diagonal score
+        for column in range(self.columns - 3):
+            for row in range(self.rows - 3):
+
+                score_check = [self.slots[row + i][column + i] for i in range(4)]
+                # print(score_check)
+                if score_check.count(piece) == 4:
+                    score += 100
+                elif score_check.count(piece) == 3 and score_check.count(' ') == 1:
+                    score += 10
+                elif score_check.count(piece) == 2 and score_check.count(' ') == 2:
+                    score += 5
+                elif score_check.count(piece) == 1 and score_check.count(' ') == 3:
+                    score += 2
 
         return score
 
