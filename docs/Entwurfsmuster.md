@@ -34,7 +34,15 @@ Im Spiel gibt es tausende Münzen, Fische und Feuerbälle. Speichert man die gle
 
 Umgesetzt wird das im Code durch 3 Klassen. In einer Klasse werden die gleichbleibenden Eigenschaften eines Objekts abgebildet (Flyweight), in der zweiten Klasse werden die veränderbaren Eigenschaften des Objekts abgebildet (Context). Die dritte Klasse verarbeitet neue Anfragen und liefert – wenn verfügbar - entweder bereits vorhandene Instanzen zurück oder erstellt eine Neue und gibt diese zurück.
 
-# Design Pattern 3
+# Bridge
+
 ## Problem:
 
-Text
+Angenommen, man hat eine geometrische Klasse Form *(Shape)* mit zwei Unterklassen: Kreis *(Circle)* und Quadrat *(Square)*. Man möchte diese Klassenhierarchie erweitern, und erstellt rote und blaue Shape-Unterklassen. Da man aber bereits zwei Unterklassen hat, muss man vier Klassenkombinationen erstellen, z. B. blauer Kreis *(BlueCircle)* und rotes Quadrat *(RedSquare)*. Um z. B. eine Dreiecksform hinzuzufügen, muss man zwei Unterklassen einführen, eine für jede Farbe. Das Hinzufügung einer neuen Farbe erfordert dann drei weitere Unterklassen für jeden Formtyp usw,… immer weiter im Kreis.
+
+## Lösung: 
+Von der Vererbung zur Objektkomposition wechselt. Dies bedeutet, dass man eine der Dimensionen in eine separate Klassenhierarchie extrahieren, sodass die ursprünglichen Klassen auf ein Objekt der neuen Hierarchie verweisen, anstatt alle Zustände und Verhaltensweisen innerhalb einer Klasse zu haben.
+
+
+![LösungBridge](bridgesolution.png)
+Farbbezogenen Code können in eine eigene Klasse mit zwei Unterklassen extrahieren. Der Klasse wird dann ein Referenzfeld zugewiesen, das auf eines der farbigen Objekte zeigt. Jetzt kann das Formular alle farbbezogenen Aufgaben an das verknüpfte Farbobjekt delegieren. Diese Referenz dient als Brücke zwischen den Klassen. Von nun an erfordert das Hinzufügen neuer Farben keine Änderung der Formenhierarchie mehr und umgekehrt.
