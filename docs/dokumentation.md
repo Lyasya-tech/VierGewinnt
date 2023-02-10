@@ -1,6 +1,6 @@
 Sofware Name: VierGewinnt  
-Version: 1.0  
-Datum: 01.02.2023
+Version: 1.1  
+Datum: 10.02.2023
 
 # Software Zusammenfassung
 # Spielanleitung
@@ -14,35 +14,19 @@ Folgende Aspekte müssen umgesetzt werden:
   - Nächste*r Spieler*in kann Stein spielen oder Spiel beenden
 - Der Computergegner muss nicht intelligent sein, sondern nur gültige Spielzüge durchführen.
 
-# Anleitung
+# Beschreibung
 **Klassen:** 
 - Klasse Board
 - Klasse Player  
 
   - PC-Player
+  - AI
 
 Um das Spielbrett darzustellen wurde die Klasse Board implementiert.  
 Um einen Spieler darzustellen wurde die Klasse Player erstellt, von welcher die Unterklasse PC-Player abgeleitet ist.  
 *Klassendiagramm siehe Bild:*  
 ![Klassendiagramm](Klassendiagramm.jpg)
 
+*Beschreibung der Methoden--> siehe Docstrings*
 
-
-## Schritt 1
-## Schritt 2
-## Schritt xy
-# Testen
-# 
-
-
-
-
-(zwei spaces = nächste zeile)
-
-
-
-- bullet points
--
--
-
-
+Wir sind sehr nahe an unserer ursprünglicher Planung geblieben, haben jedoch noch eine Zusatzfunktion eingebaut *(Klasse AI)*, welche einen schlaueren Gegner simuliert. Dadurch haben sich zusätzliche Methoden für *Klasse Board* ergeben. 
