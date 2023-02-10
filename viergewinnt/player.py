@@ -3,12 +3,15 @@ import random
 import copy
 
 class Player:
+    """The Player object is representing the player."""
     @property
     def piece(self):
+        """Get piece."""
         return self.__piece
 
     @piece.setter
     def piece(self, value):
+        """Set piece to input value or 'X' if invalid input."""
         if value == "X" or value == "O":
             self.__piece = value
         else:
@@ -68,6 +71,7 @@ class Player:
 
 
 class PCPlayer(Player):
+    """The PCPlayer object is representing the PC-Player."""
     def __init__(self, piece: str):
         """Assigns parameter to attribute.
 
@@ -99,6 +103,7 @@ class PCPlayer(Player):
 
 
 class AI(Player):
+    """The AI object is representing the AI-Player."""
     def __init__(self, piece: str):
         """Assigns parameter to attribute.
 

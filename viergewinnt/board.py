@@ -1,21 +1,5 @@
 class Board:
-    """
-    Das Board object verwaltet das Spielbrett
-
-    Parameters
-    ----------
-    arg : str
-        The arg is used for ...
-    *args
-        The variable arguments are used for ...
-    **kwargs
-        The keyword arguments are used for ...
-
-    Attributes
-    ----------
-    arg : str
-        This is where we store arg,
-    """
+    """The Board object is representing the board to be played on."""
     def __init__(self, rows: int, columns: int):
         """Assigns parameters to its attributes.
 
@@ -25,6 +9,8 @@ class Board:
             number of rows
         columns : int
             number of columns
+        slots : list[list[str]]
+            2D array representing the board
         """
         self.rows = rows
         self.columns = columns
