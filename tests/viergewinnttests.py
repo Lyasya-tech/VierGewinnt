@@ -33,7 +33,7 @@ class TestCommon(unittest.TestCase):
         self.assertEqual(False, self.board.valid_column(6))
 
     def test_get_free_row(self):
-        # diese Methode wird nur ausgeführt, wenn valid_column() den Wert True hat
+        # this method is only executed if valid_column() has the value True
 
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -81,12 +81,6 @@ class TestCommon(unittest.TestCase):
         self.board.place_piece(6, 'X')
         self.assertEqual(expected_list, self.board.slots)
 
-    # def test_is_full(self):
-    #     for i in range(self.board.rows):
-    #         for j in range(self.board.columns):
-    #             self.board.slots[i][j] = 'X'
-    #     self.assertEqual(True, self.board.is_full())
-
     def test_win_horizontal(self):
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -94,10 +88,6 @@ class TestCommon(unittest.TestCase):
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          ['X', 'X', 'X', 'X', ' ', ' ', ' ']]
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(1, 'X')
-        # self.board.place_piece(2, 'X')
-        # self.board.place_piece(3, 'X')
         self.assertEqual(True, self.board.win('X'))
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -105,10 +95,6 @@ class TestCommon(unittest.TestCase):
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          ['X', 'O', 'X', 'X', ' ', ' ', ' ']]
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(1, 'X')
-        # self.board.place_piece(2, 'O')
-        # self.board.place_piece(3, 'X')
         self.assertEqual(None, self.board.win('X'))
 
     def test_win_vertical(self):
@@ -118,10 +104,6 @@ class TestCommon(unittest.TestCase):
                          ['X', ' ', ' ', ' ', ' ', ' ', ' '],
                          ['X', ' ', ' ', ' ', ' ', ' ', ' '],
                          ['X', ' ', ' ', ' ', ' ', ' ', ' ']]
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(0, 'X')
         self.assertEqual(True, self.board.win('X'))
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -139,16 +121,6 @@ class TestCommon(unittest.TestCase):
                          [' ', ' ', 'X', ' ', ' ', ' ', ' '],
                          [' ', 'X', ' ', ' ', ' ', ' ', ' '],
                          ['X', ' ', ' ', ' ', ' ', ' ', ' ']]
-        # self.board.place_piece(0, 'X')
-        # self.board.place_piece(1, 'O')
-        # self.board.place_piece(1, 'X')
-        # self.board.place_piece(2, 'O')
-        # self.board.place_piece(2, 'O')
-        # self.board.place_piece(2, 'X')
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'X')
         self.assertEqual(True, self.board.win('X'))
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', 'X', ' ', ' '],
@@ -159,16 +131,6 @@ class TestCommon(unittest.TestCase):
         self.assertEqual(None, self.board.win('X'))
 
     def test_win_negative_diagonal(self):
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'O')
-        # self.board.place_piece(3, 'X')
-        # self.board.place_piece(4, 'O')
-        # self.board.place_piece(4, 'O')
-        # self.board.place_piece(4, 'X')
-        # self.board.place_piece(5, 'O')
-        # self.board.place_piece(5, 'X')
-        # self.board.place_piece(6, 'X')
         self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                          [' ', ' ', ' ', 'X', ' ', ' ', ' '],
@@ -237,7 +199,7 @@ class TestCommon(unittest.TestCase):
     def test_player_move_3(self, input):
         self.assertEqual(6, self.player.move(self.board))
 
-    # in diesem Fall würden wir in eine Endlosschleife geraten, da die Eingabe des Spielers nachgeahmt wird
+    # in this case we would get into an infinite loop as the player's input is simulated
     # @patch('builtins.input', return_value='8')
     # def test_player_move_error(self, input):
     #     self.assertEqual(6, self.player.move(self.board))
