@@ -17,27 +17,42 @@ class Board:
         This is where we store arg,
     """
     def __init__(self, rows: int, columns: int):
+        """Assigns parameters to its attributes.
+
+        Parameters
+        ----------
+        rows : int
+            number of rows
+        columns : int
+            number of columns
+        """
         self.rows = rows
         self.columns = columns
         self.slots = [[' ' for i in range(columns)] for j in range(rows)]
 
     def __repr__(self):
+        """Returns a representation of a Board object."""
         board = ''
         for row in self.slots:
             board += '|' + '|'.join(row) + '|' + '\n'
         return board
 
     def print_board(self):
-        """
-        Prints the current board including its played pieces
-        """
+        """Prints the current board including its played pieces."""
         print(self.slots)
 
     def get_free_row(self, column: int):
-        """
+        """Returns an integer representing the lowest possible position.
 
-        :param column:
-        :return:
+        Parameters
+        ----------
+        column : int
+            current column
+
+        Returns
+        -------
+        int
+            lowest row number
         """
         row = 0
         for r in range(self.rows):
@@ -46,19 +61,59 @@ class Board:
         return row
 
     def place_piece(self, column: int, piece: str):
-        # row = 0
-        # for r in range(self.rows):
-        #     if self.slots[r][column] == ' ':
-        #         row = r
+        """Places piece on the board.
+
+        Parameters
+        ----------
+        column : int
+            current column
+        piece: str
+            current players piece
+        """
         self.slots[self.get_free_row(column)][column] = piece
 
     def valid_column(self, column: int):
+        """Returns True if column is available.
+
+        Parameters
+        ----------
+        column : int
+            current column
+
+        Returns
+        -------
+        bool
+            True if column is available, False otherwise.
+        """
         return self.slots[0][column] == ' '
 
     def is_piece(self, row: int, column: int, piece: str):
+        """Returns True if board slot is occupied by piece.
+
+        Parameters
+        ----------
+        row : int
+            current row
+        column : int
+            current column
+        piece : str
+            current piece
+
+        Returns
+        -------
+        bool
+            True if slot is occupied, False otherwise.
+        """
         return self.slots[row][column] == piece
 
     def is_full(self):
+        """Returns True if board is full.
+
+        Returns
+        -------
+        bool
+            True if board is full, False otherwise.
+        """
         for row in range(self.rows):
             for column in range(self.columns):
                 if self.slots[row][column] == " ":
@@ -66,6 +121,18 @@ class Board:
         return True
 
     def win(self, piece: str):
+        """Returns True if there is a win constellation on the board.
+
+        Parameters
+        ----------
+        piece : str
+            current piece
+
+        Returns
+        -------
+        bool
+            True if pieces are arranged in a win constellation, None otherwise.
+        """
         for column in range(self.columns - 3):
             for row in range(self.rows):
                 if self.slots[row][column] == self.slots[row][column+1] == self.slots[row][column+2] ==\
@@ -95,6 +162,18 @@ class Board:
                     return True
 
     def score(self, piece: str):
+        """Returns highest score for best move.
+
+        Parameters
+        ----------
+        piece : str
+            current piece
+
+        Returns
+        -------
+        int
+            score
+        """
         score = 0
 
         # horizontal score
@@ -163,63 +242,4 @@ class Board:
 
 
 if __name__ == '__main__':
-    board = Board(6, 7)
-    # print(board)
-    # board.print_board()
-    board.place_piece(0, "X")
-    # board.place_piece(0, "X")
-    # board.place_piece(0, "X")
-    # board.place_piece(0, "X")
-    # board.place_piece(0, "X")
-    # board.place_piece(0, "X")
-
-    # board.place_piece(1, "X")
-    # board.place_piece(1, "X")
-    # board.place_piece(1, "X")
-    # board.place_piece(1, "X")
-    # board.place_piece(1, "X")
-    # board.place_piece(1, "X")
-
-    # board.place_piece(2, "X")
-    # board.place_piece(2, "X")
-    # board.place_piece(2, "X")
-    # board.place_piece(2, "X")
-    # board.place_piece(2, "X")
-    # board.place_piece(2, "X")
-
-    # board.place_piece(3, "X")
-    # board.place_piece(3, "X")
-    # board.place_piece(3, "X")
-    # board.place_piece(3, "X")
-    # board.place_piece(3, "X")
-    # board.place_piece(3, "X")
-
-    # board.place_piece(4, "X")
-    # board.place_piece(4, "X")
-    # board.place_piece(4, "X")
-    # board.place_piece(4, "X")
-    # board.place_piece(4, "X")
-    # board.place_piece(4, "X")
-
-    # board.place_piece(5, "X")
-    # board.place_piece(5, "X")
-    # board.place_piece(5, "X")
-    # board.place_piece(5, "X")
-    # board.place_piece(5, "X")
-    # board.place_piece(5, "X")
-
-    # board.place_piece(6, "X")
-    # board.place_piece(6, "X")
-    # board.place_piece(6, "X")
-    # board.place_piece(6, "X")
-    # board.place_piece(6, "X")
-    # board.place_piece(6, "X")
-
-    # print(board.win("X"))
-    print(board)
-    print(board.score("X"))
-    # print(board.valid_column(1))
-
-    # print(board.get_free_row(1))
-    # print(board.is_full())
-    # print(board.slots)
+    pass
