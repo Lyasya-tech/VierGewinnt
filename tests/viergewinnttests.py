@@ -12,6 +12,7 @@ class TestCommon(unittest.TestCase):
         self.board = Board(6, 7)
         self.player = Player('X')
         self.pcplayer = PCPlayer('X')
+        self.aiplayer = AI('X')
 
     def test_init_board(self):
         self.assertEqual(6, self.board.rows)
@@ -183,6 +184,42 @@ class TestCommon(unittest.TestCase):
                          ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
         self.assertEqual(None, self.board.win('X'))
 
+    def test_score_zero(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' ']]
+        self.assertEqual(0, self.board.score(self.player.piece))
+
+    def test_score_1_piece(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', ' ']]
+        self.assertEqual(6, self.board.score(self.player.piece))
+
+    def test_score_2_piece(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
+        self.assertEqual(12, self.board.score(self.player.piece))
+
+    def test_score_2_piece_X_1_piece_O(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', 'O', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
+        self.assertEqual(12, self.board.score(self.player.piece))
+
     # Test Player
 
     def test_player_opponent(self):
@@ -210,4 +247,51 @@ class TestCommon(unittest.TestCase):
         self.assertEqual(self.pcplayer.move(self.board), 4)
         self.assertEqual(self.pcplayer.move(self.board), 1)
         self.assertEqual(self.pcplayer.move(self.board), 2)
+
+    def test_AI_valid_move(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
+        expected_list = [0, 1, 2, 3, 4, 5, 6]
+        self.assertEqual(expected_list, self.aiplayer.valid_move(self.board))
+
+    def test_AI_valid_move_2_columns_full(self):
+        self.board.slots = [['X', ' ', ' ', ' ', ' ', ' ', 'X'],
+                            ['X', ' ', ' ', ' ', ' ', ' ', 'X'],
+                            ['X', ' ', ' ', ' ', ' ', ' ', 'X'],
+                            ['X', ' ', ' ', ' ', ' ', ' ', 'X'],
+                            ['X', ' ', ' ', ' ', ' ', ' ', 'X'],
+                            ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
+        expected_list = [1, 2, 3, 4, 5]
+        self.assertEqual(expected_list, self.aiplayer.valid_move(self.board))
+
+    def test_move_middle(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', 'X']]
+        self.assertEqual(3, self.aiplayer.move(self.board))
+
+    def test_move_three_in_row(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', 'X', 'X', ' ', ' ', ' ', ' ']]
+        self.assertEqual(3, self.aiplayer.move(self.board))
+
+    def test_move_three_in_column(self):
+        self.board.slots = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' ', ' ']]
+        self.assertEqual(0, self.aiplayer.move(self.board))
 

@@ -56,12 +56,12 @@ class AI(Player):
     def __init__(self, piece: str):
         super().__init__(piece)
 
-    def move(self, board):
-        column = self.best_move(board)
-        if board.valid_column(column):
-            return column
-        else:
-            self.move(board)
+    # def move(self, board):
+    #     column = self.best_move(board)
+    #     # if board.valid_column(column):
+    #     return column
+        # else:
+        #     self.move(board)
 
     def valid_move(self, board):
         valid_move = []
@@ -70,7 +70,7 @@ class AI(Player):
                 valid_move.append(column)
         return valid_move
 
-    def best_move(self, board):
+    def move(self, board):
         best_score = 0
         valid_move = self.valid_move(board)
         best_column = random.choice(valid_move)
