@@ -1,4 +1,21 @@
 class Board:
+    """
+    Das Board object verwaltet das Spielbrett
+
+    Parameters
+    ----------
+    arg : str
+        The arg is used for ...
+    *args
+        The variable arguments are used for ...
+    **kwargs
+        The keyword arguments are used for ...
+
+    Attributes
+    ----------
+    arg : str
+        This is where we store arg,
+    """
     def __init__(self, rows: int, columns: int):
         self.rows = rows
         self.columns = columns
@@ -11,9 +28,17 @@ class Board:
         return board
 
     def print_board(self):
+        """
+        Prints the current board including its played pieces
+        """
         print(self.slots)
 
     def get_free_row(self, column: int):
+        """
+
+        :param column:
+        :return:
+        """
         row = 0
         for r in range(self.rows):
             if self.slots[r][column] == ' ':
